@@ -1,0 +1,594 @@
+Camerabot sourced
+radlab@radlab-HP-ProDesk-600-G1-TWR:~/baxter_ws$ ./baxter.sh
+Camerabot sourced
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/baxter_ws$ source ~/Desktop/robotics_ws/devel/setup.bash --extend
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/baxter_ws$ cd ~/lab_1/
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/lab_1$ ipython3
+Python 3.8.10 (default, Jun 22 2022, 20:18:18) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.13.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: run start_baxter                                                                             
+
+In [2]: limb.get_joint_angles()                                                                      
+Out[2]: 
+array([-0.76392243, -1.41739825,  1.40282543,  1.53896623, -2.87851495,
+       -1.47837398,  2.2434469 ])
+
+In [3]: limb.get_joint_angles()                                                                      
+Out[3]: 
+array([-1.04464092, -1.4055099 ,  1.16007297,  1.16812637, -2.9858936 ,
+       -1.57233031,  2.11344203])
+
+In [4]: limb.set_joint_positions_mod([0]*7)                                                          
+
+In [5]: limb.get_kdl_forward_position_kinematics()                                                   
+Out[5]: 
+array([ 0.55548954, -0.65099736,  0.55255459, -0.19841864,  0.93521598,
+       -0.01656834,  0.29279107])
+
+In [6]: cd ~/baxter_ws/                                                                              
+/home/radlab/baxter_ws
+
+In [7]: cd -                                                                                         
+/home/radlab/lab_1
+
+In [8]: quit()                                                                                       
+Unknown tag: materialScalar element defined multiple times: collisionScalar element defined multiple times: collisionUnknown tag: materialScalar element defined multiple times: collisionScalar element defined multiple times: collision[ERROR] [1666118939.644508]: bad callback: <bound method RadBaxterLimb._on_joint_states of <rad_baxter_limb.RadBaxterLimb object at 0x7f472bdd5940>>
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 750, in _invoke_callback
+    cb(msg)
+  File "/home/radlab/lab_1/rad_baxter_limb.py", line 233, in _on_joint_states
+    self.pub_joint_rate.publish(UInt16(self.rate))
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 882, in publish
+    self.impl.publish(data)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 1041, in publish
+    raise ROSException("publish() to a closed topic")
+rospy.exceptions.ROSException: publish() to a closed topic
+
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/lab_1$ 
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/lab_1$ cd ~/Desktop/robotics_ws/src/rad_baxter_limb/
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb$ la
+CMakeLists.txt  package.xml  setup.py  src
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb$ cd src/
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src$ la
+baxter_left_dMdq_func.py    baxter_right_dyn_params.py   new_baxter_left_dyn_params.py
+baxter_left_dynamics.py     baxter_right_kinematics.py   offset_util.py
+baxter_left_dyn_params.py   baxter_right_kinematics.pyc  offset_util.pyc
+baxter_left_kinematics.py   dynamics_utils.py            rad_baxter_limb
+baxter_left_kinematics.pyc  __init__.py                  rad_baxter_limbc
+baxter_right_dynamics.py    new_baxter_left_dynamics.py
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src$ cd //
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR://$ cd -
+/home/radlab/Desktop/robotics_ws/src/rad_baxter_limb/src
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src$ cd ..
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb$ la
+CMakeLists.txt  package.xml  setup.py  src
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb$ cd src/rad_baxter_limb/
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb$ la
+13                          part1_mark.py           part3_csv_version.py
+8                           part1_MWJN.py           part3_DA.py
+baxter_left_kinematics.py   part1_new.py            part3_JacobC.py
+baxter_right_kinematics.py  part1_Nolan.py          part3joeandasa.py
+cv_functions.py             Part1_positions_JacobC  part3_justin.py
+Final_Project_Tips.py       part1_quinn.py          part3_jw.py
+Grabber.py                  part1_student01.py      part3_kyleblake.py
+__init__.py                 part1_student02.py      part3_MWJN.py
+JB_part2.py                 part2_brevin.py         part3_new.py
+lab1_justin_positions.odt   part2_DA.py             part3_Nolan.py
+Main.py                     part2_JacobC.py         part3_quinn.py
+offset_util.py              part2joeandasa.py       part3_spen_kody.py
+part1_bradon.py             part2_justin.py         part3_student01.py
+part1_brevin.py             part2_jw.py             part3_student03.py
+part1_BR.py                 part2_kyleblake.py      part_student01.py
+part1_DA.py                 part2_MWJN.py           __pycache__
+part1_JacobC.py             part2_new.py            rad_baxter_limb.py
+part1joeandasa.py           part2_Nolan.py          robotics_lab_fresh_start
+part1_justin2.py            part2_quinn.py          robotics_lab_fresh_start.zip
+part1_justin.py             part2_student01.py      start_baxter.py
+part1_jw.py                 part2_student02.py      test_data
+part1_kyleblake.py          part3_brevin.py
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb$ 
+
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb$ cp part1_new.py part1_isaac_ben.py
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb$ ipython3
+Python 3.8.10 (default, Jun 22 2022, 20:18:18) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.13.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: run part1_isaac_ben.py                                                                       
+Unknown tag: materialScalar element defined multiple times: collisionScalar element defined multiple times: collisionUnknown tag: materialScalar element defined multiple times: collisionScalar element defined multiple times: collision
+
+ Go to position 1 using the wrist button on baxter. Then press Enter...
+
+joint angles are: 
+ [ 0.79115059 -0.04640292  0.19289808  0.85289332 -3.03268002  0.16413594
+  2.65225278]
+
+end effector position is: 
+ [ 1.07383291 -0.15096126 -0.15260468]
+
+end effector orientation is: 
+ [[-0.5616404  -0.22308742  0.79673839]
+ [-0.23366597  0.96653128  0.10591271]
+ [-0.79370037 -0.12668579 -0.59497095]] 
+
+
+
+
+
+ Go to position 2 using the wrist button on baxter. Then press Enter...^L
+
+joint angles are: 
+ [ 0.96832537 -0.94684964  0.1357573  -0.04448544 -2.954447   -1.57769924
+  2.47469451]
+
+end effector position is: 
+ [0.87035006 0.01832955 0.75718813]
+
+end effector orientation is: 
+ [[-0.16626644 -0.67548623  0.71838278]
+ [-0.62529892  0.63554052  0.4528681 ]
+ [-0.76246753 -0.37390721 -0.52804987]] 
+
+
+
+
+
+ Go to position 3 using the wrist button on baxter. Then press Enter...
+
+joint angles are: 
+ [-0.39423306 -0.76392243 -0.32366995  0.68453893 -2.78379163 -1.25748075
+  0.36278646]
+
+end effector position is: 
+ [ 0.32847278 -1.12685422  0.29340739]
+
+end effector orientation is: 
+ [[-0.22123366 -0.95709154  0.18716691]
+ [-0.91566235  0.13781791 -0.37758269]
+ [ 0.33558624 -0.25491569 -0.90686265]] 
+
+
+
+
+
+ Go to position 4 using the wrist button on baxter. Then press Enter...
+
+joint angles are: 
+ [ 0.51580104 -0.75548554 -0.3831117   0.11351458 -0.00536893 -1.57731575
+  3.02846157]
+
+end effector position is: 
+ [ 0.54457318 -0.28523213  1.09801746]
+
+end effector orientation is: 
+ [[-0.69360529 -0.57881099 -0.42882344]
+ [ 0.34015126 -0.78791191  0.51331466]
+ [-0.63498727  0.21017293  0.74338315]] 
+
+
+
+
+In [2]: run part1_isaac_ben.py                                                                       
+Unknown tag: materialScalar element defined multiple times: collisionScalar element defined multiple times: collisionUnknown tag: materialScalar element defined multiple times: collisionScalar element defined multiple times: collision
+
+ Go to position 1 using the wrist button on baxter. Then press Enter...
+
+joint angles are: 
+ [ 5.21553468e-01 -7.55869033e-01 -3.76975779e-01  1.10830112e-01
+  1.53398079e-03 -1.56926235e+00  3.03383050e+00]
+
+end effector position is: 
+ [ 0.54356003 -0.28592334  1.10135507]
+
+end effector orientation is: 
+ [[-0.70168595 -0.56479674 -0.43432876]
+ [ 0.33473625 -0.79945728  0.4988183 ]
+ [-0.62895824  0.20462821  0.75002589]] 
+
+
+
+
+
+ Go to position 2 using the wrist button on baxter. Then press Enter...
+
+joint angles are: 
+ [ 1.48335942  0.39730102 -0.15608255  0.99286906 -2.56059743 -0.26844664
+  0.30679616]
+
+end effector position is: 
+ [ 0.4372663  -0.03076617 -0.56523   ]
+
+end effector orientation is: 
+ [[ 0.9918558  -0.12038398 -0.04159054]
+ [-0.12185556 -0.99193534 -0.0348641 ]
+ [-0.03705804  0.0396482  -0.99852628]] 
+
+
+
+
+
+ Go to position 3 using the wrist button on baxter. Then press Enter...
+
+joint angles are: 
+ [ 0.56872338 -0.16413594 -1.92629637  1.67280605 -3.05108779  0.45252433
+ -1.31883998]
+
+end effector position is: 
+ [ 0.37499241 -1.0944868   0.75941688]
+
+end effector orientation is: 
+ [[ 0.39476682  0.91486435  0.0847489 ]
+ [-0.35378952  0.23649027 -0.90493388]
+ [-0.84793404  0.3272546   0.41702793]] 
+
+
+
+
+
+ Go to position 4 using the wrist button on baxter. Then press Enter...
+
+joint angles are: 
+ [ 0.70601466  0.29950975 -2.77190328  0.47515055 -3.05070429  0.18292721
+ -3.05377225]
+
+end effector position is: 
+ [ 1.24015552 -0.4721267   0.37760778]
+
+end effector orientation is: 
+ [[-0.06559776 -0.1580762   0.98524558]
+ [-0.49874935 -0.84999455 -0.16958285]
+ [ 0.86426039 -0.50251485 -0.02308266]] 
+
+
+
+
+In [3]:                                                                                              
+Do you really want to exit ([y]/n)? y
+[ERROR] [1666119319.555365]: bad callback: <bound method RadBaxterLimb._on_joint_states of <rad_baxter_limb.RadBaxterLimb object at 0x7f5e4d5bcac0>>
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 750, in _invoke_callback
+    cb(msg)
+  File "/home/radlab/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb/rad_baxter_limb.py", line 242, in _on_joint_states
+    self.pub_joint_rate.publish(UInt16(self.rate))
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 882, in publish
+    self.impl.publish(data)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 1041, in publish
+    raise ROSException("publish() to a closed topic")
+rospy.exceptions.ROSException: publish() to a closed topic
+
+[ERROR] [1666119319.555849]: bad callback: <bound method RadBaxterLimb._on_joint_states of <rad_baxter_limb.RadBaxterLimb object at 0x7f5e4d5bcac0>>
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 750, in _invoke_callback
+    cb(msg)
+  File "/home/radlab/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb/rad_baxter_limb.py", line 242, in _on_joint_states
+    self.pub_joint_rate.publish(UInt16(self.rate))
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 882, in publish
+    self.impl.publish(data)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 1041, in publish
+    raise ROSException("publish() to a closed topic")
+rospy.exceptions.ROSException: publish() to a closed topic
+
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb$ cp part2_new.py part2_isaac_ben.py
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb$ ipython3
+Python 3.8.10 (default, Jun 22 2022, 20:18:18) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.13.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: run part2_isaac_ben.py                                                                       
+Unknown tag: materialScalar element defined multiple times: collisionScalar element defined multiple times: collisionUnknown tag: materialScalar element defined multiple times: collisionScalar element defined multiple times: collision
+
+ Move to your desired position and push enter ...
+For test number 00:
+
+joint angles are: 
+ [ 0.24083498 -0.58521367 -3.03574798 -0.0479369  -3.05108779  1.12172345
+ -3.04456837]
+
+end effector position is: 
+ [ 0.93752018 -0.7118265   0.62142902]
+
+end effector orientation is: 
+ [[ 0.39406314 -0.46179166  0.79464627]
+ [-0.43988057 -0.85391272 -0.27809739]
+ [ 0.80698162 -0.23996152 -0.5396287 ]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+For test number 01:
+
+joint angles are: 
+ [ 0.24121848 -0.58636416 -3.03498099 -0.0479369  -3.05147128  1.12210695
+ -3.04341788]
+
+end effector position is: 
+ [ 0.93744488 -0.71120247  0.6223725 ]
+
+end effector orientation is: 
+ [[ 0.39318323 -0.46147344  0.79526675]
+ [-0.44045914 -0.85375983 -0.27765067]
+ [ 0.80709522 -0.24111492 -0.53894424]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+For test number 02:
+
+joint angles are: 
+ [ 0.24160197 -0.58483018 -3.03651497 -0.0475534  -3.05185478  1.12325743
+ -3.04456837]
+
+end effector position is: 
+ [ 0.93746767 -0.71148075  0.62074844]
+
+end effector orientation is: 
+ [[ 0.39577347 -0.46213641  0.79359517]
+ [-0.43945636 -0.85409552 -0.27820666]
+ [ 0.80637551 -0.23864363 -0.54111714]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+For test number 03:
+
+joint angles are: 
+ [ 0.24160197 -0.58559717 -3.03536448 -0.04716991 -3.05147128  1.12210695
+ -3.04380138]
+
+end effector position is: 
+ [ 0.93771964 -0.71111915  0.62214691]
+
+end effector orientation is: 
+ [[ 0.39352423 -0.461269    0.79521669]
+ [-0.43990356 -0.85403251 -0.27769288]
+ [ 0.80723202 -0.24053978 -0.53899636]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+For test number 04:
+
+joint angles are: 
+ [ 0.24198547 -0.58483018 -3.03613147 -0.04716991 -3.05108779  1.12210695
+ -3.04341788]
+
+end effector position is: 
+ [ 0.93800257 -0.71097362  0.62142702]
+
+end effector orientation is: 
+ [[ 0.39407551 -0.46148582  0.7948178 ]
+ [-0.44027913 -0.85390223 -0.27749825]
+ [ 0.80675819 -0.24058642 -0.53968453]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+For test number 05:
+
+joint angles are: 
+ [ 0.24236896 -0.58598066 -3.03574798 -0.0475534  -3.05185478  1.12249044
+ -3.04380138]
+
+end effector position is: 
+ [ 0.93781909 -0.71055782  0.62208018]
+
+end effector orientation is: 
+ [[ 0.39427977 -0.46104574  0.79497188]
+ [-0.43939096 -0.85434151 -0.2775539 ]
+ [ 0.80714252 -0.23986956 -0.53942891]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+For test number 06:
+
+joint angles are: 
+ [ 0.24160197 -0.58521367 -3.03689846 -0.0475534  -3.05108779  1.12249044
+ -3.04341788]
+
+end effector position is: 
+ [ 0.93777389 -0.71125019  0.62083352]
+
+end effector orientation is: 
+ [[ 0.39477574 -0.46195307  0.79419864]
+ [-0.44080205 -0.853656   -0.27742563]
+ [ 0.80613006 -0.24056348 -0.54063254]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+For test number 07:
+
+joint angles are: 
+ [ 0.24236896 -0.58406318 -3.03613147 -0.04716991 -3.05147128  1.12249044
+ -3.04380138]
+
+end effector position is: 
+ [ 0.9382034  -0.7108041   0.62058093]
+
+end effector orientation is: 
+ [[ 0.39530265 -0.46140521  0.79425503]
+ [-0.44007814 -0.85411785 -0.27715327]
+ [ 0.80626736 -0.23997485 -0.54068939]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+For test number 08:
+
+joint angles are: 
+ [ 0.24236896 -0.58444668 -3.03613147 -0.04716991 -3.05185478  1.12172345
+ -3.04265089]
+
+end effector position is: 
+ [ 0.93820058 -0.71098489  0.62115417]
+
+end effector orientation is: 
+ [[ 0.39395126 -0.46192662  0.79462331]
+ [-0.44053624 -0.85365859 -0.2778396 ]
+ [ 0.80667852 -0.2406051  -0.53979529]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+For test number 09:
+
+joint angles are: 
+ [ 0.24121848 -0.58444668 -3.03536448 -0.0475534  -3.05185478  1.12249044
+ -3.04341788]
+
+end effector position is: 
+ [ 0.93771418 -0.7113638   0.62128564]
+
+end effector orientation is: 
+ [[ 0.39478079 -0.4616089   0.79439622]
+ [-0.43941454 -0.85418966 -0.27798361]
+ [ 0.80688475 -0.23932666 -0.54005533]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+
+In [2]: run part2_isaac_ben.py                                                                       
+Unknown tag: materialScalar element defined multiple times: collisionScalar element defined multiple times: collisionUnknown tag: materialScalar element defined multiple times: collisionScalar element defined multiple times: collision
+
+ Move to your desired position and push enter ...
+For test number 00:
+
+joint angles are: 
+ [ 0.8463739  -0.3831117  -3.03766546  0.54341269 -2.71322852  1.58805361
+ -0.35665053]
+
+end effector position is: 
+ [ 0.93874725 -0.03671591  0.67905927]
+
+end effector orientation is: 
+ [[-0.4345371  -0.60569642  0.66656534]
+ [-0.28909061  0.79472899  0.53369697]
+ [-0.85299714  0.03921335 -0.52044038]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+For test number 01:
+
+joint angles are: 
+ [ 0.84905837 -0.38272821 -3.03766546  0.5430292  -2.714379    1.58805361
+ -0.35665053]
+
+end effector position is: 
+ [ 0.93847891 -0.03473249  0.67839437]
+
+end effector orientation is: 
+ [[-0.43468536 -0.60709962  0.66519072]
+ [-0.29051367  0.79366336  0.53450939]
+ [-0.85243794  0.03909641 -0.52136458]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+For test number 02:
+
+joint angles are: 
+ [ 0.84944186 -0.38196122 -3.03804895  0.5430292  -2.71284502  1.58805361
+ -0.35626704]
+
+end effector position is: 
+ [ 0.93838464 -0.03388244  0.67791081]
+
+end effector orientation is: 
+ [[-0.43511118 -0.60806044  0.66403371]
+ [-0.2903907   0.79286803  0.5357551 ]
+ [-0.85226258  0.04028382 -0.52156084]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...
+For test number 03:
+
+joint angles are: 
+ [ 0.85289332 -0.38196122 -3.03689846  0.54341269 -2.71284502  1.58843711
+ -0.35626704]
+
+end effector position is: 
+ [ 0.93741326 -0.03086     0.67816473]
+
+end effector orientation is: 
+ [[-0.43397644 -0.6112009   0.66188965]
+ [-0.29129721  0.79040987  0.53888605]
+ [-0.85253175  0.04105724 -0.52106038]] 
+
+
+
+Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...^C[ERROR] [1666119882.803900]: bad callback: <bound method RadBaxterLimb._on_joint_states of <rad_baxter_limb.RadBaxterLimb object at 0x7ff010a16400>>
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 750, in _invoke_callback
+    cb(msg)
+  File "/home/radlab/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb/rad_baxter_limb.py", line 242, in _on_joint_states
+    self.pub_joint_rate.publish(UInt16(self.rate))
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 882, in publish
+    self.impl.publish(data)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 1041, in publish
+    raise ROSException("publish() to a closed topic")
+rospy.exceptions.ROSException: publish() to a closed topic
+
+---------------------------------------------------------------------------
+EOFError                                  Traceback (most recent call last)
+~/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb/part2_isaac_ben.py in <module>
+     54         print("\nend effector orientation is: \n", R, "\n\n\n")
+     55 
+---> 56         input('Measure the vertical distance to the end effector. Then press Enter when ready for the next cycle ...')
+
+EOFError: 
+
+In [3]:                                                                                              
+Do you really want to exit ([y]/n)? y
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb$ 
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb$ cp part3_new.py part3_isaac_ben.py
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb$ ipython3
+Python 3.8.10 (default, Jun 22 2022, 20:18:18) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.13.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: run part3_isaac_ben.py                                                                       
+Unknown tag: materialScalar element defined multiple times: collisionScalar element defined multiple times: collisionUnknown tag: materialScalar element defined multiple times: collisionScalar element defined multiple times: collision[ERROR] [1666119928.070204]: bad callback: <bound method RadBaxterLimb._on_joint_states of <rad_baxter_limb.RadBaxterLimb object at 0x7ff9de5a77c0>>
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 750, in _invoke_callback
+    cb(msg)
+  File "/home/radlab/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb/rad_baxter_limb.py", line 255, in _on_joint_states
+    self.w.append((np.array([self._joint_velocity[self.limb_name + '_s0'], self._joint_velocity[self.limb_name + '_s1'], self._joint_velocity[self.limb_name + '_e0'], self._joint_velocity[self.limb_name + '_e1'], self._joint_velocity[self.limb_name + '_w0'], self._joint_velocity[self.limb_name + '_w1'], self._joint_velocity[self.limb_name + '_w2']]) *self.s1 - self.a2*self.w[2] - self.a3 * self.w[1]) * (1/self.a1))
+KeyError: 'right_s0'
+
+
+
+ Move to your first desired position and push enter ...
+Move to your second desired position and push enter ...
+Completed trial  1
+Completed trial  2
+Completed trial  3
+Completed trial  4
+Completed trial  5
+Completed trial  6
+Completed trial  7
+Completed trial  8
+Completed trial  9
+Completed trial  10
+
+In [2]:                                                                                              
+Do you really want to exit ([y]/n)? y
+[ERROR] [1666120117.609929]: bad callback: <bound method RadBaxterLimb._on_joint_states of <rad_baxter_limb.RadBaxterLimb object at 0x7ff9de5a77c0>>
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 750, in _invoke_callback
+    cb(msg)
+  File "/home/radlab/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb/rad_baxter_limb.py", line 242, in _on_joint_states
+    self.pub_joint_rate.publish(UInt16(self.rate))
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 882, in publish
+    self.impl.publish(data)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 1041, in publish
+    raise ROSException("publish() to a closed topic")
+rospy.exceptions.ROSException: publish() to a closed topic
+
+[baxter - http://Thing2.local:11311] radlab@radlab-HP-ProDesk-600-G1-TWR:~/Desktop/robotics_ws/src/rad_baxter_limb/src/rad_baxter_limb$ 
+
