@@ -218,9 +218,6 @@ for i in range(time_to_run * refresh_rate):
 viz.close_viz()
 
 # %% Part 2
-
-# TODO: Input remaining data and compute end effector positions to compare to measured positions
-
 # First position (10 iterations)
 pos_1_test_0 = {
     "joint angles": [
@@ -288,7 +285,8 @@ pos_1_test_3 = {
     ],
     "end effector pos": [0.93771964, -0.71111915, 0.62214691],
     "end effector R": [
-        [0.39352423, -0.461269, 0.79521669][-0.43990356, -0.85403251, -0.27769288],
+        [0.39352423, -0.461269, 0.79521669],
+        [-0.43990356, -0.85403251, -0.27769288],
         [0.80723202, -0.24053978, -0.53899636],
     ],
     "measured vertical": 1.545,
@@ -434,7 +432,8 @@ pos_2_test_1 = {
     "end effector pos": [0.93847891, -0.03473249, 0.67839437],
     "end effector R": [
         [-0.43468536, -0.60709962, 0.66519072],
-        [-0.29051367, 0.79366336, 0.53450939][-0.85243794, 0.03909641, -0.52136458],
+        [-0.29051367, 0.79366336, 0.53450939],
+        [-0.85243794, 0.03909641, -0.52136458],
     ],
     "measured vertical": 1.60,
 }
@@ -475,11 +474,36 @@ pos_2_test_3 = {
     "measured vertical": 1.605,
 }
 
-homogeneous_ts = []
+arm_part_2 = kin.SerialArm(dh=dh, jt=jt_types, base=base)
+commanded_angles = pos_1_test_0["joint angles"]
+pos_1_heights = []
+pos_2_heights = []
 for pos in (1, 2):
     for test in range(10):
+        if pos == 2 and test > 3:
+            break
         data = locals()[f"pos_{pos}_test_{test}"]
+        if pos == 1:
+            pos_1_heights.append(data["measured vertical"])
+        else:
+            pos_2_heights.append(data["measured vertical"])
         T_ee = kin.se3(data["end effector R"], data["end effector pos"])
+        T_fk = arm_part_2.fk(q=data["joint angles"], base=True)
+        print(f"For position {pos}, test {test}:")
+        print("Joint angle errors:")
+        print(np.array(data["joint angles"]) - np.array(commanded_angles), end="\n\n")
+        print("Forward kinematics errors")
+        print(T_ee - T_fk, end="\n\n")
+
+plt.figure()
+plt.scatter([1] * len(pos_1_heights), pos_1_heights)
+plt.scatter([2] * len(pos_2_heights), pos_2_heights)
+plt.xticks([1, 2])
+plt.xlabel("Position (1 or 2)")
+plt.ylabel("Recorded Height (m)")
+plt.title("Variance in Height Measurements")
+
+plt.savefig("Variance_Plot.jpg")
 
 
 # %% Animating the motion of part 3, iteration 1 to check that the DH parameters are correct
