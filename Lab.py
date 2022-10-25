@@ -475,7 +475,7 @@ pos_2_test_3 = {
 }
 
 arm_part_2 = kin.SerialArm(dh=dh, jt=jt_types, base=base)
-commanded_angles = pos_1_test_0["joint angles"]
+commanded_angles = (pos_1_test_0["joint angles"], pos_2_test_0["joint angles"])
 pos_1_heights = []
 pos_2_heights = []
 for pos in (1, 2):
@@ -491,7 +491,10 @@ for pos in (1, 2):
         T_fk = arm_part_2.fk(q=data["joint angles"], base=True)
         print(f"For position {pos}, test {test}:")
         print("Joint angle errors:")
-        print(np.array(data["joint angles"]) - np.array(commanded_angles), end="\n\n")
+        print(
+            np.array(data["joint angles"]) - np.array(commanded_angles[pos - 1]),
+            end="\n\n",
+        )
         print("Forward kinematics errors")
         print(T_ee - T_fk, end="\n\n")
 
